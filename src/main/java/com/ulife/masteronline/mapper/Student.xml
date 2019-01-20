@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.ulife.masteronline.mapper.StudentMapper">
+	
+	    <insert id="add" parameterType="Student" >
+	    </insert>
+	    
+	    <insert id="addByBatch" parameterType="java.util.List" useGeneratedKeys="false">
+	    </insert>
+	    
+	    <delete id="delete" parameterType="int" >
+	    </delete>
+	    
+	    <select id="login" parameterType="Student" resultType="Student">
+			select * from student where school_no = #{school_no} and password = #{password}
+	    </select>
+
+	    <select id="" parameterType="Student" resultType="Student">
+	    </select>
+	    
+	    <select id="listSchool" resultType="String">
+	    </select>
+
+		<update id="modifySelfInfo" parameterType="Student" >
+			UPDATE student SET name= #{name},sex = #{sex},birthday=#{birthday},password=#{password}
+			WHERE school_no=#{school_no}
+		</update>
+	</mapper>
+
