@@ -1,13 +1,16 @@
 package com.ulife.masteronline.controller;
 
-import com.ulife.masteronline.pojo.Materail;
-import com.ulife.masteronline.pojo.PublishedTask;
-import com.ulife.masteronline.pojo.Task;
+import com.ulife.masteronline.mapper.MaterialMapper;
+import com.ulife.masteronline.pojo.*;
 import com.ulife.masteronline.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("teacher")
@@ -22,8 +25,11 @@ public class TeacherController {
     * 返回：选课成功/失败
      */
     @RequestMapping("selectCourse")
-    public ModelAndView selectCourse(int courseCode){
-        return new ModelAndView();
+    public ModelAndView selectCourse(int cid,HttpServletRequest request){
+        teacherService.selectCourse(cid,request);
+        ModelAndView mav = new ModelAndView("selectcourse.jsp");
+        mav.addObject("message","选课成功");
+        return mav;
     }
 
     /*
@@ -32,8 +38,10 @@ public class TeacherController {
     * 输出：List<course>
      */
     @RequestMapping("getMyCourses")
-    public ModelAndView getMyCourses(){
-        return new ModelAndView();
+    public ModelAndView getMyCourses(HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("courselist.jsp");
+        mav.addObject("courseList",teacherService.getMyCourses(request));
+        return mav;
     }
 
     /*
@@ -41,30 +49,36 @@ public class TeacherController {
     * 输入：教师id+课程id
     * 返回：操作结果
      */
-    @RequestMapping("deleteMycourses")
-    public ModelAndView deleteMycourses(){
-        return new ModelAndView();
+    @RequestMapping("deleteMyCourse")
+    public ModelAndView deleteMyCourse(int cid,HttpServletRequest request){
+        teacherService.deleteMyCourse(cid,request);
+        ModelAndView mav = new ModelAndView("");
+        return mav;
     }
 
     /*
     * 功能：添加资料
     * 输入：资料信息
-    * 操作：插入资料表
+    * 操作：插入资料表/
     * 返回：插入成功/失败
      */
     @RequestMapping("addMaterial")
-    public ModelAndView addMaterail(Materail materail){
+    public ModelAndView addMaterial(Material material,HttpServletRequest request){
+        teacherService.addMaterial(material,request);
         return new ModelAndView();
     }
 
     /*
     * 功能：获取上传资料
     * 输入：教师jobno
-    * 输出：List<Materail>
+    * 输出：List<Material>
      */
     @RequestMapping("getMaterials")
-    public ModelAndView getMaterial(int jobno){
-        return new ModelAndView();
+    public ModelAndView getMaterial(int tid){
+        ArrayList<Material> materialList = teacherService.getMaterials(tid);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("material",materialList);
+        return mav;
     }
 
     /*
@@ -72,8 +86,9 @@ public class TeacherController {
     * 输入：资料id
     * 输出：删除成功/失败
      */
-    @RequestMapping("deleteMaterail")
-    public ModelAndView getMaterail(int mid){
+    @RequestMapping("deleteMaterial")
+    public ModelAndView deleteMaterial(int mid){
+        teacherService.deleteMaterial(mid);
         return new ModelAndView();
     }
 
@@ -85,6 +100,7 @@ public class TeacherController {
      */
     @RequestMapping("publishTask")
     public ModelAndView publishTask(Task task, PublishedTask publishedTask){
+
         return new ModelAndView();
     }
 

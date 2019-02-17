@@ -1,6 +1,7 @@
 package com.ulife.masteronline.controller;
 
 import com.ulife.masteronline.pojo.Student;
+import com.ulife.masteronline.pojo.Task;
 import com.ulife.masteronline.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,25 @@ public class StudentController {
         studentService.modifySelfInfo(student,request);
         return mav;
     }
+    /*
+     * 功能：查询作业
+     *
+     */
+    @RequestMapping("getTask")
+    public ModelAndView modifySelfInfo(int id){
+        ModelAndView mav = new ModelAndView("");
+        Task task = studentService.getTask(id);
+        mav.addObject("task",task);
+        return mav;
+    }
+
+//    @RequestMapping("getCourse")
+//    public ModelAndView getCourse
 
     /*
      * 功能：提交作业（注意处理重复提交的作业和同名作业）
-     * 输入；
+     *
      */
+
 
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ulife.masteronline.mapper.CourseMapper">
+
+
+    <select id="getCourses" parameterType="int" resultType="List">
+        select * from course where id = #{0}
+    </select>
+
+    <select id="" parameterType="int" resultType="Material">
+        select * from material where id = #{0}
+    </select>
+
+    <insert id="" parameterType="Submit" >
+        insert INTO submit(name,sid,task_id,location) value(#{name},#{sid},#{task_id},#{location})
+    </insert>
+
+
+</mapper>
+

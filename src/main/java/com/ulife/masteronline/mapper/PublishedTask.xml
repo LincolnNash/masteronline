@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ulife.masteronline.mapper.PublishedTaskMapper">
+    <insert id="addPublishedTask" parameterType="PublishedTask" >
+        INSERT INTO Publishedtask (tid,task_id,requirement,deadline)
+        VALUE (#{tid},#{task_id},#{requirement},#{deadline})
+    </insert>
+
+    <delete id="deletePublishedTask" parameterType="int" >
+        DELETE FROM publishedtask WHERE task_id = #{0}
+    </delete>
+
+    <select id="getPublishedTask" parameterType="int" resultType="List">
+        select * from publishedtask where id=id
+    </select>
+
+</mapper>
+

@@ -83,9 +83,7 @@ create table teach(
     constraint fk_teach_teacher foreign key(tid) references teacher(id),
     primary key(id)
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    
-    
-    
+
 create table learn(
     id int(11) not null auto_increment,
     sid int(11) default null,
@@ -110,10 +108,10 @@ create table publishedtask(
  
 create table submit(
     id int(11) not null auto_increment,
+    name varchar(255) default null,
     sid int(11) default null,
     task_id int(11)default null,
-    location text default null,
-    sub_time date default null,
+    location VARCHAR(255) default null,
     constraint fk_sub_student foreign key(sid) references student(id),
     constraint fk_sub_task foreign key(task_id) references task(id),
     primary key(id)

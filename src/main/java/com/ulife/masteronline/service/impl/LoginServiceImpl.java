@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
         else{
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(60*30);
-            session.setAttribute("teacher",student1);
+            session.setAttribute("student",student1);
             return 1;
         }
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ulife.masteronline.mapper.TaskMapper">
+    <insert id="addTask" parameterType="Task" >
+        INSERT INTO task (name,location) VALUE (#{name},#{location})
+        <selectKey resultType="java.lang.Integer" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+    </insert>
+
+    <delete id="deleteTask" parameterType="int" >
+        DELETE FROM task WHERE id = #{0}
+    </delete>
+
+    <select id="getTasks" parameterType="int" resultType="List">
+    select * from task where id IN (SELECT task_id from publishedTask where tid = #{0})
+    </select>
+
+    <select id="getTask" parameterType="int" resultType="Task">
+        select * from task where id = #{0}
+    </select>
+
+</mapper>
+

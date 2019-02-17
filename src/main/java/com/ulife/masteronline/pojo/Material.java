@@ -1,12 +1,12 @@
 package com.ulife.masteronline.pojo;
 
-public class Materail {
+public class Material {
     private int id;
     private String name;
     private String location;
-    private int teacher_no ;
-    private int correspond_course ;
-    private String outline ;
+    private int teacher_no;
+    private int correspond_course;
+    private String outline;
 
     public int getId() {
         return id;

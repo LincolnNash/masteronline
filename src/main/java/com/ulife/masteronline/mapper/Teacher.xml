@@ -5,12 +5,20 @@
 
 <mapper namespace="com.ulife.masteronline.mapper.TeacherMapper">
 
-	<insert id="add" parameterType="Teacher">
-
+	<insert id="selectCourse" parameterType="int">
+		insert into teach (cid,tid)VALUE (#{0},#{1})
 	</insert>
-	
-	<delete id="delete" parameterType="int">
 
+	<select id="login" parameterType="Teacher" resultType="Teacher">
+		select * from teacher where jobno = #{jobno} and password = #{password}
+	</select>
+
+	<select id="getMyCourses" parameterType="int" resultType="List">
+		SELECT * from course WHERE id IN (SELECT cid FROM teach WHERE tid =#{tid})
+	</select>
+	
+	<delete id="deleteMyCourse" parameterType="int">
+		DELETE  FROM teach WHERE cid = #{0} and tid={1}
 	</delete>
 
 	<select id="" parameterType="Teacher" resultType="Teacher">
@@ -21,13 +29,6 @@
 		UPDATE teacher SET name= #{name},sex = #{sex},birthday=#{birthday},password=#{password}
 		WHERE jobno=#{jobno}
 	</update>
-
-	<select id="login" parameterType="Teacher" resultType="Teacher">
-		select * from teacher where jobno = #{jobno} and password = #{password}
-	</select>
-
-	<select id="listSchool" resultType="String">
-	</select>
 
 </mapper>
 
